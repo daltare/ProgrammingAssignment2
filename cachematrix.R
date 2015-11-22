@@ -1,5 +1,5 @@
-## These functions are passed a matrix (x) as input, then calculate the inverse 
-## of the matrix and cache the matrix inverse so it can be retrieved if needed 
+## These functions are passed a matrix (x) as input, then compute the inverse 
+## of the matrix and cache the inverse so it can be retrieved if needed 
 ## for re-use. The function makeCacheMatrix stores the matrix and can cache 
 ## its inverse. The cacheSolve function checks whether the matrix 
 ## inverse has been calcualted and is cached in the function makeCacheMatrix; 
@@ -11,32 +11,34 @@
 ## This function is passed a matrix (x) as input, and returns a list containing 
 ## multiple functions. The functions store the matrix and can cache its inverse
 ## (i) if the inverse has been calculated. 
+
 makeCacheMatrix <- function(x = matrix()) {
         
         i <- NULL  # The variable i stores the matrix inverse if computed
         
-        # Stores the matrix passed to the set function, and makes it available 
+        # This function stores the matrix passed to the set function, and makes it available 
         # to all functions within the makeCacheMatrix function
         set <- function(y) {    
                 x <<- y         # Stores the matrix 
                 i <<- NULL      # Re-sets the matrix inverse when matrix changes
         }
         
-        # Returns the matrix
+        # This function returns the matrix
         get <- function() x     
         
-        # Caches the inverse in the variable i, and makes it available to all 
+        # This function caches the inverse in the variable i, and makes it available to all 
         # functions within the makeCacheMatrix function
         setinverse <- function(inverse) i <<- inverse
         
-        # Returns the value of the matrix inverse
+        # This function returns the value of the matrix inverse
         getinverse <- function() i
         
-        # Create a list of the functions defined above. The list is returned to
+        # This creates a list of the functions defined above. The list is returned to
         # the object assigned to makeCacheMatrix
         list(set = set, get = get, setinverse = setinverse, 
              getinverse = getinverse)
 }
+
 
 
 ## This function computes the inverse of the matrix stored by makeCacheMatrix, 
